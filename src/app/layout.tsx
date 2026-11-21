@@ -1,56 +1,62 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
-import Script from "next/script";
+import { Space_Grotesk, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
-import ClientLayout from "./ClientLayout";
+import { ReactNode } from "react";
+import { ClientLayout } from "@/components/ClientLayout";
 
-const SKETRICGEN_AGENT_ID = "skflow_84691519-e0fc-409a-b963-3bf7285bbc54";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
+const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], variable: "--font-space-grotesk" });
+const jetbrainsMono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-jetbrains-mono", weight: ["400", "500"] });
 
 export const metadata: Metadata = {
-  title: "Tech Defenders IT | Enterprise Cybersecurity Solutions",
-  description:
-    "Protecting businesses and securing tomorrow. Enterprise-grade cybersecurity solutions including penetration testing, vulnerability assessment, SOC monitoring, and incident response. Trusted by 500+ enterprises worldwide.",
-  keywords:
-    "cybersecurity, penetration testing, vulnerability assessment, SOC monitoring, incident response, cloud security, network security, IT security",
+  metadataBase: new URL('https://www.techdefenderss.com'),
+  title: {
+    default: "Tech Defenders IT | Cybersecurity & Web Solutions",
+    template: "%s | Tech Defenders IT"
+  },
+  description: "Protecting businesses and securing tomorrow. Leading IT and Cybersecurity company providing penetration testing, web development, SOC monitoring, and enterprise tech solutions.",
+  keywords: ["Tech", "Tech Defenders", "Tech Defenders IT", "Cybersecurity", "Web Development", "IT Solutions Ahmedabad", "Penetration Testing", "Web Application Security", "IT Company"],
+  authors: [{ name: "Tech Defenders IT" }],
+  creator: "Tech Defenders IT",
+  icons: {
+    icon: '/logo.png',
+    apple: '/logo.png',
+  },
   openGraph: {
-    title: "Tech Defenders IT | Enterprise Cybersecurity Solutions",
-    description:
-      "Protecting businesses and securing tomorrow with enterprise-grade cybersecurity solutions.",
     type: "website",
     locale: "en_US",
+    url: "https://www.techdefenderss.com",
+    title: "Tech Defenders IT | Cybersecurity & Web Solutions",
+    description: "Enterprise-grade IT and cybersecurity solutions to protect your business and digital presence.",
+    siteName: "Tech Defenders IT",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Tech Defenders IT | Cybersecurity & Web Solutions",
+    description: "Enterprise-grade IT and cybersecurity solutions to protect your business.",
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+    },
   },
 };
 
 export default function RootLayout({
   children,
 }: Readonly<{
-  children: React.ReactNode;
+  children: ReactNode;
 }>) {
   return (
-    <html
-      lang="en"
-      className={`${geistSans.variable} ${geistMono.variable} scroll-smooth`}
-      suppressHydrationWarning
-    >
-      <body className="min-h-screen bg-[#050816] text-[#F8FAFC] antialiased" suppressHydrationWarning>
+    <html lang="en">
+      <body className={`${spaceGrotesk.variable} ${jetbrainsMono.variable} font-sans bg-bg text-ink min-h-screen overflow-x-hidden`}>
         <ClientLayout>{children}</ClientLayout>
       </body>
-      <Script
-        id="sketricgen-tech-defenders-agent"
-        src="https://jswidget.sketricgen.ai/widget-embed.js"
-        data-agent-id={SKETRICGEN_AGENT_ID}
-        strategy="afterInteractive"
-      />
     </html>
   );
 }

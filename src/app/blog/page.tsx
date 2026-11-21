@@ -1,78 +1,101 @@
-import type { Metadata } from "next";
+"use client";
+import React from "react";
 import Link from "next/link";
-import { ArrowRight, Calendar, Clock, User } from "lucide-react";
-import { blogPosts } from "@/data/blog";
-
-export const metadata: Metadata = {
-  title: "Blog | Tech Defenders IT",
-  description:
-    "Stay informed with the latest cybersecurity trends, threat intelligence, and best practices from the experts at Tech Defenders IT.",
-};
+import { Reveal } from "@/components/Reveal";
+import { INSIGHTS } from "@/data";
+import { soundManager } from "@/utils/audio";
 
 export default function BlogPage() {
   return (
-    <div className="pt-20">
-      <div className="relative py-16 lg:py-20 text-center">
-        <div className="absolute inset-0 grid-pattern" />
-        <div className="relative mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
-          <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold text-white">
-            Latest{" "}
-            <span className="text-gradient">Insights</span>
-          </h1>
-          <p className="mt-4 text-lg text-gray-400 max-w-2xl mx-auto">
-            Stay informed with the latest cybersecurity trends, threat
-            intelligence, and best practices from our expert team.
-          </p>
-        </div>
+    <div className="pt-28 pb-24 min-h-screen relative select-none">
+      {/* Background Ambience */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none">
+        <div className="absolute inset-0 bg-hero-grid bg-[48px_48px] opacity-15 mask-hero" />
+        <div className="absolute inset-0 bg-scanlines opacity-10" />
       </div>
 
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8 pb-24 lg:pb-32">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-          {blogPosts.map((post, i) => (
-            <article key={post.id} className="group">
-              <Link href={`/blog/${post.slug}`}>
-                <div className="glass-card rounded-2xl overflow-hidden h-full">
-                  <div className="relative h-48 bg-gradient-to-br from-[#00D9FF]/10 to-[#7C3AED]/10 overflow-hidden">
-                    <div className="absolute inset-0 flex items-center justify-center">
-                      <div className="text-center">
-                        <div className="text-4xl mb-2">🛡️</div>
-                        <span className="text-xs text-gray-500 font-mono">
-                          {post.category}
-                        </span>
-                      </div>
-                    </div>
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0A0A0A] to-transparent opacity-60" />
-                  </div>
-                  <div className="p-6">
-                    <span className="inline-block px-3 py-1 rounded-full text-xs font-medium bg-[#00D9FF]/10 text-[#00D9FF] mb-3">
-                      {post.category}
+      <div className="container w-[min(1240px,92%)] mx-auto relative z-10">
+        {/* Intro Header */}
+        <div className="max-w-3xl mb-14">
+          <Reveal>
+            <div className="inline-flex items-center gap-2 px-3 py-1 border border-cyan/30 bg-black/60 backdrop-blur-md mb-3">
+              <span className="w-1.5 h-1.5 rounded-full bg-cyan animate-pulse" />
+              <span className="font-mono text-[11px] tracking-[0.2em] text-cyan uppercase">
+                TECH DEFENDERS RESEARCH & INSIGHTS
+              </span>
+            </div>
+          </Reveal>
+
+          <Reveal delay={0.1}>
+            <h1 className="text-[clamp(32px,4.5vw,60px)] font-bold tracking-tight text-ink leading-[1.05] mb-4">
+              PERSPECTIVES ON MODERN TECHNOLOGY.
+            </h1>
+          </Reveal>
+
+          <Reveal delay={0.2}>
+            <p className="text-sm md:text-base text-ink-dim leading-relaxed">
+              Explore deep dives into modern enterprise software architecture, intelligent business automation,
+              scalable web engineering, and defense-grade cloud security from our engineering leads.
+            </p>
+          </Reveal>
+        </div>
+
+        {/* Insights Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6 mb-16">
+          {INSIGHTS.map((insight, i) => (
+            <Reveal key={insight.slug} delay={i * 0.1}>
+              <Link
+                href={`/blog/${insight.slug}`}
+                onClick={() => soundManager.playClick()}
+                onMouseEnter={() => soundManager.playHover()}
+                className="p-6 border border-white/10 hover:border-cyan/50 bg-black/60 backdrop-blur-xl cyber-corner h-full flex flex-col justify-between transition-all duration-300 hover:-translate-y-1 group"
+              >
+                <div>
+                  <div className="flex items-center justify-between border-b border-white/10 pb-3 mb-4">
+                    <span className="font-mono text-[10px] text-cyan tracking-wider uppercase font-semibold">
+                      // {insight.tag}
                     </span>
-                    <h2 className="text-lg font-semibold text-white mb-2 group-hover:text-[#00D9FF] transition-colors duration-300 line-clamp-2">
-                      {post.title}
-                    </h2>
-                    <p className="text-sm text-gray-400 mb-4 line-clamp-2">
-                      {post.excerpt}
-                    </p>
-                    <div className="flex items-center gap-4 text-xs text-gray-500">
-                      <span className="flex items-center gap-1">
-                        <User className="h-3 w-3" />
-                        {post.author}
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <Calendar className="h-3 w-3" />
-                        {post.date}
-                      </span>
-                      <span className="flex items-center gap-1">
-                        <Clock className="h-3 w-3" />
-                        {post.readTime}
-                      </span>
-                    </div>
+                    <span className="font-mono text-[10px] text-ink-muted">
+                      {insight.read}
+                    </span>
                   </div>
+
+                  <h3 className="text-base md:text-lg font-bold text-ink leading-snug mb-3 group-hover:text-cyan transition-colors">
+                    {insight.title}
+                  </h3>
+
+                  <p className="text-xs text-ink-dim leading-relaxed mb-6">
+                    {insight.desc}
+                  </p>
+                </div>
+
+                <div className="pt-3 border-t border-white/10 flex items-center justify-between font-mono text-[10px] text-ink-muted">
+                  <span>{insight.author}</span>
+                  <span>{insight.date}</span>
                 </div>
               </Link>
-            </article>
+            </Reveal>
           ))}
         </div>
+
+        {/* Bottom CTA Block */}
+        <Reveal>
+          <div className="p-8 md:p-12 border border-white/10 bg-black/70 backdrop-blur-xl cyber-corner text-center">
+            <h2 className="text-2xl md:text-3xl font-bold text-ink mb-3">
+              Looking for tailored technical guidance?
+            </h2>
+            <p className="text-xs md:text-sm text-ink-dim max-w-xl mx-auto mb-6">
+              Our engineering architects are available for technology evaluations, architecture design, and project planning.
+            </p>
+            <Link
+              href="/contact"
+              onClick={() => soundManager.playClick()}
+              className="px-6 py-2.5 bg-cyan hover:bg-cyan/90 text-[#030508] font-mono text-xs font-bold tracking-wider transition-all inline-block"
+            >
+              [ SCHEDULE A CONSULTATION ]
+            </Link>
+          </div>
+        </Reveal>
       </div>
     </div>
   );
