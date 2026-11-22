@@ -4,7 +4,6 @@ import Link from "next/link";
 import Image from "next/image";
 import { motion, AnimatePresence } from "framer-motion";
 import { soundManager } from "@/utils/audio";
-import ThemeToggle from "./ThemeToggle";
 
 interface TopHudProps {
   currentChapter: number;
@@ -104,7 +103,7 @@ export default function TopHud({
       {/* Top HUD Fixed Bar with responsive padding & glass backdrop */}
       <header
         style={{ zIndex: 9999 }}
-        className="fixed top-0 left-0 right-0 z-50 h-16 sm:h-20 px-3 sm:px-6 md:px-10 flex items-center justify-between border-b border-line bg-bg/85 dark:bg-[#030610]/85 light:bg-white/85 backdrop-blur-xl pointer-events-auto transition-colors duration-300"
+        className="fixed top-0 left-0 right-0 z-50 h-16 sm:h-20 px-3 sm:px-6 md:px-10 flex items-center justify-between border-b border-line bg-[#030610]/85 backdrop-blur-xl pointer-events-auto"
       >
         {/* Left: Brand Identity */}
         <div className="flex items-center gap-2 sm:gap-4">
@@ -147,16 +146,13 @@ export default function TopHud({
           <span className="text-ink-dim">// {chapterTitles[currentChapter]}</span>
         </div>
 
-        {/* Right: Theme Toggle, Audio Toggle, Quick CTA, Index Button */}
+        {/* Right: Audio Toggle, Quick CTA, Index Button */}
         <div className="flex items-center gap-1.5 sm:gap-2.5 md:gap-3">
-          {/* Light / Dark Mode Toggle */}
-          <ThemeToggle />
-
           {/* Audio Synthesizer Toggle */}
           <button
             onClick={toggleSound}
             aria-label="Toggle Audio"
-            className="flex items-center gap-1.5 sm:gap-2 px-2 sm:px-3 py-1.5 border border-white/10 light:border-slate-300 hover:border-cyan/50 bg-white/[0.02] light:bg-slate-100 text-ink-dim hover:text-cyan text-xs font-mono transition-colors rounded-sm min-h-[36px]"
+            className="flex items-center gap-1.5 sm:gap-2 px-2 sm:px-3 py-1.5 border border-white/10 hover:border-cyan/50 bg-white/[0.02] text-ink-dim hover:text-cyan text-xs font-mono transition-colors rounded-sm min-h-[36px]"
           >
             <div className="flex items-end gap-0.5 h-3">
               <span
@@ -195,7 +191,7 @@ export default function TopHud({
               setMenuOpen(!menuOpen);
             }}
             aria-label="Toggle Navigation Index"
-            className="px-2.5 sm:px-3.5 py-1.5 border border-white/10 light:border-slate-300 hover:border-cyan/50 bg-white/[0.02] light:bg-slate-100 text-ink hover:text-cyan text-xs font-mono tracking-wider flex items-center gap-1.5 sm:gap-2 transition-colors rounded-sm min-h-[36px]"
+            className="px-2.5 sm:px-3.5 py-1.5 border border-white/10 hover:border-cyan/50 bg-white/[0.02] text-ink hover:text-cyan text-xs font-mono tracking-wider flex items-center gap-1.5 sm:gap-2 transition-colors rounded-sm min-h-[36px]"
           >
             <div className="flex flex-col gap-1 w-3.5">
               <span
@@ -228,7 +224,7 @@ export default function TopHud({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-0 z-50 bg-[#030610]/75 dark:bg-[#030610]/75 light:bg-[#030610]/85 backdrop-blur-2xl text-white flex flex-col justify-between p-4 sm:p-6 md:p-10 overflow-y-auto transition-colors duration-300"
+            className="fixed inset-0 z-50 bg-[#030610]/75 backdrop-blur-2xl text-white flex flex-col justify-between p-4 sm:p-6 md:p-10 overflow-y-auto"
           >
             {/* Ambient Volumetric Blue Radial Glow shining through frosted glass */}
             <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_65%_48%,rgba(0,140,255,0.2)_0%,rgba(0,212,255,0.08)_35%,transparent_68%)]" />

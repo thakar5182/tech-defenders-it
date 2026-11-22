@@ -5,7 +5,6 @@ import Image from "next/image";
 import { usePathname } from "next/navigation";
 import clsx from "clsx";
 import { soundManager } from "@/utils/audio";
-import ThemeToggle from "./ThemeToggle";
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
@@ -122,11 +121,8 @@ export default function Navbar() {
           })}
         </nav>
 
-        {/* Right: Theme Toggle, Audio Toggle & Quick CTA */}
+        {/* Right: Audio Toggle & Quick CTA */}
         <div className="flex items-center gap-1.5 sm:gap-2.5 md:gap-3">
-          {/* Light / Dark Mode Toggle */}
-          <ThemeToggle />
-
           {/* Audio Synthesizer Toggle */}
           <button
             onClick={toggleSound}
