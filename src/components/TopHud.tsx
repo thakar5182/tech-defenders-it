@@ -67,11 +67,36 @@ export default function TopHud({
   };
 
   const directPortals = [
-    { label: "About Tech Defenders IT", href: "/about" },
-    { label: "All Services Directory", href: "/services" },
-    { label: "Leadership & Team", href: "/team" },
-    { label: "Cybersecurity Insights", href: "/blog" },
-    { label: "Dedicated Contact Desk", href: "/contact" },
+    {
+      title: "About Tech Defenders IT",
+      sub: "Enterprise Heritage, Global Mission & Technological Leadership",
+      href: "/about",
+      tag: "CORE MISSION",
+    },
+    {
+      title: "All Services Directory",
+      sub: "Custom Software, AI Automation, SOC Monitoring & Cloud",
+      href: "/services",
+      tag: "SOLUTIONS",
+    },
+    {
+      title: "Leadership & Team",
+      sub: "Senior Engineers, Architects & Cybersecurity Specialists",
+      href: "/team",
+      tag: "TALENT",
+    },
+    {
+      title: "Cybersecurity & Tech Insights",
+      sub: "Threat Intelligence, Research Whitepapers & Industry Updates",
+      href: "/blog",
+      tag: "INTELLIGENCE",
+    },
+    {
+      title: "Dedicated Contact Desk",
+      sub: "Direct Client Inquiries, Security Audits & Project Quotes",
+      href: "/contact",
+      tag: "GET IN TOUCH",
+    },
   ];
 
   return (
@@ -203,10 +228,10 @@ export default function TopHud({
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -20 }}
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="fixed inset-0 z-50 bg-[#030610]/80 dark:bg-[#030610]/80 light:bg-slate-900/85 backdrop-blur-3xl text-white flex flex-col justify-between p-4 sm:p-8 md:p-12 overflow-y-auto transition-colors duration-300"
+            className="fixed inset-0 z-50 bg-[#030610]/75 dark:bg-[#030610]/75 light:bg-[#030610]/85 backdrop-blur-2xl text-white flex flex-col justify-between p-4 sm:p-6 md:p-10 overflow-y-auto transition-colors duration-300"
           >
             {/* Ambient Volumetric Blue Radial Glow shining through frosted glass */}
-            <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_65%_48%,rgba(0,140,255,0.22)_0%,rgba(0,212,255,0.08)_35%,transparent_68%)]" />
+            <div className="absolute inset-0 pointer-events-none bg-[radial-gradient(circle_at_65%_48%,rgba(0,140,255,0.2)_0%,rgba(0,212,255,0.08)_35%,transparent_68%)]" />
 
             {/* Overlay Header */}
             <div className="relative z-10 flex items-center justify-between border-b border-white/10 pb-4 sm:pb-6">
@@ -225,8 +250,9 @@ export default function TopHud({
                   <div className="font-mono text-xs sm:text-sm md:text-base font-bold text-white tracking-[0.12em] sm:tracking-[0.15em]">
                     TECH DEFENDERS
                   </div>
-                  <div className="font-mono text-[9px] sm:text-[10px] tracking-[0.18em] sm:tracking-[0.22em] text-cyan font-semibold">
-                    // SYSTEM NAVIGATION MATRIX
+                  <div className="font-mono text-[9px] sm:text-[10px] tracking-[0.18em] sm:tracking-[0.22em] text-cyan font-semibold flex items-center gap-1.5 mt-0.5">
+                    <span className="w-1.5 h-1.5 rounded-full bg-cyan animate-pulse shadow-[0_0_8px_#35e6c4]" />
+                    SYSTEM NAVIGATION MATRIX
                   </div>
                 </div>
               </div>
@@ -243,35 +269,39 @@ export default function TopHud({
               </button>
             </div>
 
-            {/* Overlay Body: Stanza27 Luxury Glassmorphic Editorial Layout */}
-            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-[1.4fr_1fr] gap-8 sm:gap-12 py-6 sm:py-8 my-auto max-w-7xl w-full mx-auto">
+            {/* Overlay Body Grid (Glass Card Matrix Model matching screenshot) */}
+            <div className="relative z-10 grid grid-cols-1 lg:grid-cols-[1.2fr_1fr] gap-6 sm:gap-8 lg:gap-12 py-4 sm:py-6 my-auto max-w-7xl w-full mx-auto">
               {/* Left Column: Cinematic Chapters */}
-              <div>
-                <div className="font-mono text-[10px] sm:text-[11px] tracking-[0.25em] text-slate-400 mb-4 sm:mb-6 uppercase flex items-center gap-2">
-                  <span className="w-1.5 h-1.5 bg-cyan rounded-full animate-pulse" />
-                  Cinematic Chapters
+              <div className="flex flex-col">
+                <div className="flex items-center gap-2 font-mono text-xs sm:text-sm tracking-[0.22em] sm:tracking-[0.25em] text-cyan font-bold mb-3 sm:mb-4 uppercase">
+                  <span className="w-2 h-2 bg-cyan rounded-full shadow-[0_0_8px_#35e6c4]" />
+                  [ 01 // CINEMATIC CHAPTERS ]
                 </div>
 
-                <div className="flex flex-col gap-1.5 sm:gap-3">
+                <div className="flex flex-col gap-2 sm:gap-2.5">
                   {chapterTitles.map((title, idx) => (
                     <button
                       key={idx}
                       onClick={() => handleChapterClick(idx)}
                       onMouseEnter={() => soundManager.playHover()}
-                      className={`group flex items-baseline gap-3 sm:gap-4 text-left transition-all py-1 sm:py-1.5 min-h-[44px] ${
+                      className={`group w-full flex items-center justify-between px-3 sm:px-4 py-2.5 sm:py-3 rounded border text-left transition-all duration-200 min-h-[44px] ${
                         currentChapter === idx
-                          ? "text-cyan translate-x-2 sm:translate-x-3"
-                          : "text-white/90 hover:text-cyan hover:translate-x-2 sm:hover:translate-x-3"
+                          ? "bg-cyan/15 border-cyan text-cyan shadow-[0_0_16px_rgba(0,212,255,0.25)] translate-x-1 sm:translate-x-2"
+                          : "bg-[#0b1329]/60 hover:bg-cyan/[0.1] border-white/10 hover:border-cyan/50 text-white hover:translate-x-1 sm:hover:translate-x-2 backdrop-blur-sm"
                       }`}
                     >
-                      <span className="font-mono text-xs md:text-sm text-cyan/70 group-hover:text-cyan font-bold">
-                        {String(idx).padStart(2, "0")}//
-                      </span>
-                      <span className="text-xl sm:text-2xl md:text-4xl font-extrabold tracking-tight transition-colors">
-                        {title}
-                      </span>
+                      <div className="flex items-center gap-3 sm:gap-4">
+                        <span className="font-mono text-xs font-bold text-cyan bg-[#0a1428] px-2 sm:px-2.5 py-0.5 sm:py-1 rounded border border-cyan/30 group-hover:bg-cyan group-hover:text-black transition-colors">
+                          [{String(idx).padStart(2, "0")}]
+                        </span>
+                        <span className="text-sm sm:text-base md:text-lg font-bold tracking-wide group-hover:text-cyan transition-colors">
+                          {title}
+                        </span>
+                      </div>
+
                       {currentChapter === idx && (
-                        <span className="font-mono text-[9px] sm:text-[10px] tracking-widest text-cyan uppercase border border-cyan/50 bg-cyan/10 px-2 py-0.5 rounded shadow-[0_0_8px_rgba(53,230,196,0.3)]">
+                        <span className="font-mono text-[9px] sm:text-[10px] tracking-widest text-[#030508] bg-cyan font-bold px-2 sm:px-2.5 py-0.5 rounded shadow-[0_0_8px_#35e6c4] flex items-center gap-1.5">
+                          <span className="w-1.5 h-1.5 rounded-full bg-[#030508] animate-ping" />
                           ACTIVE
                         </span>
                       )}
@@ -280,51 +310,71 @@ export default function TopHud({
                 </div>
               </div>
 
-              {/* Right Column: Direct Portals & Hotline (Clean Frosted Glass Separator) */}
-              <div className="flex flex-col justify-between border-t lg:border-t-0 lg:border-l border-white/10 pt-6 sm:pt-8 lg:pt-0 lg:pl-12">
+              {/* Right Column: Direct Company Portals & Emergency Desk */}
+              <div className="flex flex-col justify-between border-t lg:border-t-0 lg:border-l border-cyan/20 pt-6 lg:pt-0 lg:pl-8 sm:lg:pl-10">
+                {/* Direct Portals Cards */}
                 <div>
-                  <div className="font-mono text-[10px] sm:text-[11px] tracking-[0.25em] text-slate-400 mb-4 sm:mb-6 uppercase flex items-center gap-2">
-                    <span className="w-1.5 h-1.5 bg-cyan rounded-full animate-pulse" />
-                    Direct Portals
+                  <div className="flex items-center gap-2 font-mono text-xs sm:text-sm tracking-[0.22em] sm:tracking-[0.25em] text-cyan font-bold mb-3 sm:mb-4 uppercase">
+                    <span className="w-2 h-2 bg-cyan rounded-full shadow-[0_0_8px_#35e6c4]" />
+                    [ 02 // DIRECT COMPANY PORTALS ]
                   </div>
 
-                  <div className="flex flex-col gap-2.5 sm:gap-3.5 font-mono text-sm md:text-base">
+                  <div className="flex flex-col gap-2.5 sm:gap-3">
                     {directPortals.map((portal) => (
                       <Link
                         key={portal.href}
                         href={portal.href}
                         onClick={closeMenu}
                         onMouseEnter={() => soundManager.playHover()}
-                        className="text-white hover:text-cyan transition-all duration-200 flex items-center gap-2 group py-1.5 min-h-[44px]"
+                        className="group block p-3 sm:p-3.5 bg-[#0b1329]/70 hover:bg-cyan/[0.12] border border-cyan/30 hover:border-cyan rounded transition-all duration-200 shadow-md backdrop-blur-md min-h-[44px]"
                       >
-                        <span className="group-hover:translate-x-1.5 transition-transform duration-200">
-                          {portal.label} →
-                        </span>
+                        <div className="flex items-center justify-between">
+                          <span className="text-white font-bold text-xs sm:text-sm md:text-base group-hover:text-cyan transition-colors flex items-center gap-2">
+                            <span className="text-cyan font-mono text-xs">&gt;</span>
+                            {portal.title}
+                          </span>
+                          <span className="text-cyan text-sm font-bold group-hover:translate-x-1.5 transition-transform duration-200">
+                            →
+                          </span>
+                        </div>
+                        <div className="text-slate-300 text-[11px] sm:text-xs mt-1 font-sans pl-4 leading-relaxed">
+                          {portal.sub}
+                        </div>
+                        <div className="pl-4 mt-2">
+                          <span className="text-[9px] sm:text-[10px] font-mono text-cyan bg-cyan/15 px-2 py-0.5 rounded border border-cyan/30 inline-block font-semibold">
+                            {portal.tag}
+                          </span>
+                        </div>
                       </Link>
                     ))}
                   </div>
                 </div>
 
-                {/* Direct Rapid Hotline */}
-                <div className="mt-6 sm:mt-8 pt-4 sm:pt-6 border-t border-white/10 font-mono text-xs text-slate-300">
-                  <div className="text-cyan font-bold tracking-wider mb-2 flex items-center gap-2">
-                    <span>⚡</span>
+                {/* Direct Rapid Emergency Hotline */}
+                <div className="mt-4 sm:mt-6 p-4 sm:p-5 bg-gradient-to-br from-[#0c1a3a]/80 to-[#061024]/80 border border-cyan/40 rounded shadow-[0_0_20px_rgba(0,212,255,0.15)] backdrop-blur-md">
+                  <div className="flex items-center gap-2 text-cyan font-mono text-xs font-bold tracking-wider mb-2">
+                    <span className="text-base">⚡</span>
                     <span>DIRECT RAPID RESPONSE HOTLINE</span>
                   </div>
-                  <a
-                    href="tel:+917600426578"
-                    className="text-white hover:text-cyan block transition-colors text-sm sm:text-base font-semibold mb-1 py-1 min-h-[44px] flex items-center"
-                  >
-                    Phone: +91 7600426578
-                  </a>
-                  <a
-                    href="mailto:techdefenderss@gmail.com"
-                    className="text-white hover:text-cyan block transition-colors text-sm font-semibold mb-2 py-1 min-h-[44px] flex items-center"
-                  >
-                    Email: techdefenderss@gmail.com
-                  </a>
-                  <div className="text-slate-400 text-xs">
-                    Ahmedabad, Gujarat, India // 24/7 Operations Desk
+
+                  <div className="space-y-1 font-mono">
+                    <a
+                      href="tel:+917600426578"
+                      className="text-base sm:text-lg font-extrabold text-white hover:text-cyan block tracking-wider transition-colors min-h-[36px] flex items-center"
+                    >
+                      📞 +91 7600426578
+                    </a>
+                    <a
+                      href="mailto:techdefenderss@gmail.com"
+                      className="text-xs sm:text-sm font-semibold text-cyan/90 hover:text-white block transition-colors min-h-[36px] flex items-center"
+                    >
+                      ✉️ techdefenderss@gmail.com
+                    </a>
+                  </div>
+
+                  <div className="mt-2.5 pt-2.5 border-t border-cyan/20 text-slate-300 text-[11px] font-mono flex items-center justify-between">
+                    <span>Ahmedabad, Gujarat, India</span>
+                    <span className="text-cyan font-semibold">// 24/7 ACTIVE DESK</span>
                   </div>
                 </div>
               </div>
